@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Age Calculator</title>
+        <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+
+        <style>
+                @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+*{
+        font-family: 'Work Sans', sans-serif;
+}
+body{
+        display: flex;
+        margin: 0;
+        padding: 0;
+}
+section{
+        display: block;
+        width: 100%;
+}
+.box1{
+        background-color: rgb(28, 28, 28);
+        height: 50vh;
+        width: 100%;
+}
+.box2{
+        height: 50vh;
+        width: 100%;
+        background-color: rgb(253, 113, 27);
+}
+.main-box{
+        box-shadow: 0 5px 15px rgb(63, 63, 63);
+        border-radius: 15px;
+        display: block;
+        height: 50vh;
+        margin: 25vh 25%;
+        width: 50%;
+        position: absolute;
+        background-color: white;
+}
+.get-date{
+        /* background-color: aquamarine; */
+        height: 22vh;
+        width: 100%;
+        padding-top: 10px;
+}
+.get-date input{
+        outline: none;
+        height: 35px;
+        border: 1px solid black;
+        border-radius: 5px;
+        width: 87%;
+        margin: 4% 5%;
+        padding: 0 10px;
+}
+.get-date button{
+        width: 90%;
+        height: 35px;
+        background-color: rgb(253, 113, 27);
+        color: white;
+        border: none;
+        font-size: 14pt;
+        font-weight: 400;
+        border-radius: 5px;
+        margin: 2% 5%;
+        transition: 0.5s;
+}
+.get-date button:hover{
+        cursor: pointer;
+        background-color: rgb(233, 91, 3);
+}
+.show-date{
+        display: flex;
+        justify-content: space-between;
+        height: 28vh;
+        /* background-color: aqua; */
+        width: 100%;
+}
+.col{
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 3px 5px rgb(65, 65, 65);
+        text-align: center;
+        width: 100%;
+        margin: 5%;
+        background-color: white;
+}
+.col h1{
+        height: 5vh;
+        font-size: 35pt;
+        font-weight: 400;
+}
+        </style>
+
+</head>
+<body>
+        <Section>
+                <div class="box1"></div>
+                <div class="box2"></div>
+        </Section>
+        <div class="main-box">
+                <div class="get-date">
+                        <input type="date" id="getDate">
+                        <button id="btn-calc" onclick="calc()">Calculate</button>
+                </div>
+                <div class="show-date">
+                        <div class="col">
+                                <h1 id="years">-</h1>
+                                <span>Years</span>
+                        </div>
+                        <div class="col">
+                                <h1 id="months">-</h1>
+                                <span>Months</span>
+                        </div>
+                        <div class="col">
+                                <h1 id="days">-</h1>
+                                <span>Days</span>
+                        </div>
+                </div>
+        </div>
+        <script>
+                function calc(){
+                        
+                        const date = new Date();
+                        const birth = new Date(document.getElementById("getDate").value);
+                        
+                        if(birth>date){
+                                document.getElementById("years").innerHTML = "-";
+                                document.getElementById("months").innerHTML = "-";
+                                document.getElementById("days").innerHTML = "-";
+                                alert("Not born yet...");
+                                return;
+                        }
+                        // var crntDate = new Date(); 
+                        // var inpdate = new Date(document.getElementById("getDate").value);
+                        // var birthDate = inpdate.getTime();
+                        // var todayDate = today.getTime();
+
+                        // if(birthDate>crntDate){
+                        //         alert("Not born yet...🙄")
+                        //         displayResult("-","-","-");
+                        //         return;
+                        // }
+                        var diffrence = date-birth;
+                
+                        var years = Math.floor(diffrence/(365*24*60*60*1000));
+                        var months = Math.floor((diffrence%(365*24*60*60*1000))/(30*24*60*60*1000));
+                        var days = Math.floor((diffrence%(30*24*60*60*1000))/(24*60*60*1000));
+                
+                        document.getElementById("years").innerHTML = years;
+                        document.getElementById("months").innerHTML = months;
+                        document.getElementById("days").innerHTML = days;
+                }
+        </script>
+</body>
+</html>
